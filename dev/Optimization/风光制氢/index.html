@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>风光制氢 · 综合能源系统仿真优化平台</title><script data-outdated-warner src="../../assets/warner.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/lato-font/3.0.0/css/lato-font.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/juliamono/0.045/juliamono.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/fontawesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/solid.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/brands.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.13.24/katex.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL="../.."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" data-main="../../assets/documenter.js"></script><script src="../../siteinfo.js"></script><script src="../../../versions.js"></script><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/documenter-dark.css" data-theme-name="documenter-dark" data-theme-primary-dark/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/documenter-light.css" data-theme-name="documenter-light" data-theme-primary/><script src="../../assets/themeswap.js"></script><link href="../../assets/css/notes.css" rel="stylesheet" type="text/css"/></head><body><div id="documenter"><nav class="docs-sidebar"><a class="docs-logo" href="../../"><img src="../../assets/logo.svg" alt="综合能源系统仿真优化平台 logo"/></a><div class="docs-package-name"><span class="docs-autofit"><a href="../../">综合能源系统仿真优化平台</a></span></div><form class="docs-search" action="../../search/"><input class="docs-search-query" id="documenter-search-query" name="q" type="text" placeholder="Search docs"/></form><ul class="docs-menu"><li><a class="tocitem" href="../../">主页</a></li><li><span class="tocitem">静态仿真</span><ul><li><a class="tocitem" href="../../Static_simulation/PID控制仿真实验/">PID控制仿真实验</a></li><li><a class="tocitem" href="../../Static_simulation/文丘里管压力仿真/">文丘里管压力仿真</a></li><li><a class="tocitem" href="../../Static_simulation/蒸汽动力循环仿真/">蒸汽动力循环仿真</a></li><li><a class="tocitem" href="../../Static_simulation/顺流与逆流式换热器仿真/">顺流与逆流式换热器仿真</a></li></ul></li><li><span class="tocitem">动态仿真</span><ul><li><a class="tocitem" href="../../Dynamic_simulation/Ai4EJumulink/">Ai4EJumulink</a></li><li><a class="tocitem" href="../../Dynamic_simulation/Ai4ESimulator/">Ai4ESimulator</a></li></ul></li><li><span class="tocitem">优化</span><ul><li class="is-active"><a class="tocitem" href>风光制氢</a><ul class="internal"><li><a class="tocitem" href="#简介"><span>简介</span></a></li><li><a class="tocitem" href="#操作演示"><span>操作演示</span></a></li><li><a class="tocitem" href="#风光制氢模式图"><span>风光制氢模式图</span></a></li><li><a class="tocitem" href="#优化结果输出"><span>优化结果输出</span></a></li><li><a class="tocitem" href="#部分代码"><span>部分代码</span></a></li></ul></li><li><a class="tocitem" href="../风光煤气储发电/">风光煤气储发电</a></li></ul></li></ul><div class="docs-version-selector field has-addons"><div class="control"><span class="docs-label button is-static is-size-7">Version</span></div><div class="docs-selector control is-expanded"><div class="select is-fullwidth is-size-7"><select id="documenter-version-selector"></select></div></div></div></nav><div class="docs-main"><header class="docs-navbar"><nav class="breadcrumb"><ul class="is-hidden-mobile"><li><a class="is-disabled">优化</a></li><li class="is-active"><a href>风光制氢</a></li></ul><ul class="is-hidden-tablet"><li class="is-active"><a href>风光制氢</a></li></ul></nav><div class="docs-right"><a class="docs-edit-link" href="https://github.com/ccchhhddd/35_TFB_Docs/blob/main/docs/src/Optimization/风光制氢.md" title="Edit on GitHub"><span class="docs-icon fab"></span><span class="docs-label is-hidden-touch">Edit on GitHub</span></a><a class="docs-settings-button fas fa-cog" id="documenter-settings-button" href="#" title="Settings"></a><a class="docs-sidebar-button fa fa-bars is-hidden-desktop" id="documenter-sidebar-button" href="#"></a></div></header><article class="content" id="documenter-page"><h1 id="风光制氢"><a class="docs-heading-anchor" href="#风光制氢">风光制氢</a><a id="风光制氢-1"></a><a class="docs-heading-anchor-permalink" href="#风光制氢" title="Permalink"></a></h1><h2 id="简介"><a class="docs-heading-anchor" href="#简介">简介</a><a id="简介-1"></a><a class="docs-heading-anchor-permalink" href="#简介" title="Permalink"></a></h2><p>风光制氢场景针对制氢需求量，考虑风光制氢余电不上网场景的技术经济性，重点研究储氢和储能模块对综合含税售氢价格的影响，主要包含三大模块：</p><p>（1）基于给定场景的系统组件拓扑结构，输入相应的算例参数，实现对应场景8760小时仿真计算的仿真模块；</p><p>（2）采用元启发式优化方法获得相应场景下最佳容量配置的优化模块；</p><p>（3）计算对应场景在行业基准参数下的经济性评价模块；</p><h2 id="操作演示"><a class="docs-heading-anchor" href="#操作演示">操作演示</a><a id="操作演示-1"></a><a class="docs-heading-anchor-permalink" href="#操作演示" title="Permalink"></a></h2><p><img src="../../assets/优化/优化__风光制氢/风光制氢.gif" alt/></p><h2 id="风光制氢模式图"><a class="docs-heading-anchor" href="#风光制氢模式图">风光制氢模式图</a><a id="风光制氢模式图-1"></a><a class="docs-heading-anchor-permalink" href="#风光制氢模式图" title="Permalink"></a></h2><p><img src="../../assets/优化/优化__风光制氢/风光制氢——系统图.png" alt="img"/> </p><h2 id="优化结果输出"><a class="docs-heading-anchor" href="#优化结果输出">优化结果输出</a><a id="优化结果输出-1"></a><a class="docs-heading-anchor-permalink" href="#优化结果输出" title="Permalink"></a></h2><h3 id="系统小时运行图（堆叠）——周数据:"><a class="docs-heading-anchor" href="#系统小时运行图（堆叠）——周数据:">系统小时运行图（堆叠）——周数据:</a><a id="系统小时运行图（堆叠）——周数据:-1"></a><a class="docs-heading-anchor-permalink" href="#系统小时运行图（堆叠）——周数据:" title="Permalink"></a></h3><p><img src="../../assets/优化/优化__风光制氢/风光制氢——系统小时运行图（堆叠）——周数据.png" alt/></p><h3 id="系统小时运行图（平铺）——周数据"><a class="docs-heading-anchor" href="#系统小时运行图（平铺）——周数据">系统小时运行图（平铺）——周数据</a><a id="系统小时运行图（平铺）——周数据-1"></a><a class="docs-heading-anchor-permalink" href="#系统小时运行图（平铺）——周数据" title="Permalink"></a></h3><p><img src="../../assets/优化/优化__风光制氢/风光制氢——系统小时运行图（平铺）——周数据.png" alt/></p><h3 id="规模与经济性表"><a class="docs-heading-anchor" href="#规模与经济性表">规模与经济性表</a><a id="规模与经济性表-1"></a><a class="docs-heading-anchor-permalink" href="#规模与经济性表" title="Permalink"></a></h3><p><img src="../../assets/优化/优化__风光制氢/风光制氢——规模与经济性表.png" alt/></p><h2 id="部分代码"><a class="docs-heading-anchor" href="#部分代码">部分代码</a><a id="部分代码-1"></a><a class="docs-heading-anchor-permalink" href="#部分代码" title="Permalink"></a></h2><pre><code class="language-julia hljs">function optimize_ies_ele!(machines::Tuple, isOpt::Vector, fin::Financial, ::Val{1})
+    pv, wt, ec, hc, _ = machines
+    isOpt = isOpt[1:4]
+    obj = function (x)
+        # 顺序为光伏、风机、电解槽、储氢，顺序不能错！！！
+        machines = matchOptVars((pv, wt, ec, hc), isOpt, x)
+        wt_power, pv_power, load_power, hc_power = map(outputEnergy, machines)
+        powers = (wt_power, pv_power, load_power, hc_power)
+        # 供给-需求=ΔE
+        ΔE = wt_power + pv_power - load_power - hc_power
+        # 余电上网，网汇购电
+        ΔE_to_grid, ΔE_from_grid = pn_split(ΔE)
+        # 返回 &quot;制氢价格（元/kg）&quot;，该数值即为待优化的目标值
+        dictData = economicAnalysisData(machines, fin, powers,
+            (sum(ΔE_to_grid), sum(ΔE_from_grid), 0), Val(1))
+        objective = -abs(1 / dictData[&quot;静态总投资回收年限（年）&quot;])
+        return objective
+    end
+    # 调用优化求解器，可查BlackBoxOptim.jl文档
+    res = bboptimize(obj; SearchRange=(1e1, 1e7),
+        NumDimensions=sum(isOpt), TraceMode=:verbose)
+    # 输出优化结果
+    candidate, fitness = best_candidate(res), best_fitness(res)
+    println(&quot;优化变量结果： $candidate&quot;, &quot;目标值： $fitness&quot;)
+    machines = matchOptVars((pv, wt, ec, hc), isOpt, candidate)
+    # 返回最优解的仿真结果
+    return simulate_ies_ele!((machines..., 0), fin, Val(1))
+end
+
+&quot;&quot;&quot;
+
+光伏组件
+
+组件参数:
+- `input_GI`: 光照强度输入， Wh/m2
+- `input_Ta`: 环境温度输入， ℃
+- `input_v`: 风速输入， m/s
+- `capacity`: 总装机容量， kW
+- `unit_capacity`: 单机容量， kW
+- `machine_number`: 机组数量
+- `Δt`: 采样时间， h
+- `A`: 光伏板面积， m2
+- `f_PV`: 光伏板填充因子
+- `η_PV_ref`: 光伏板额定转换效率
+- `λ`: 光伏板温度系数
+- `Tc_ref`: 光伏板额定温度， ℃
+- `tau_alpha`: 光伏板吸收率
+- `η_inverter`: 综合效率，如考虑逆变器、电机效率等
+- `life_year`: 使用年限，年
+- `cost_initial`: 初始成本，元/kW
+- `cost_OM`: 年运维成本，元/kW
+- `cost_replace`: 更换成本，元/kW
+- `staff_number`: 人员数
+
+&quot;&quot;&quot;
+Base.@kwdef mutable struct PhotovoltaicCell &lt;: RenewableEnergyMachine
+    input_GI::Vector = Float64[]
+    input_Ta::Vector = Float64[]
+    input_v::Vector = Float64[]
+    capacity::Float64 = 1e7
+    unit_capacity::Float64 = 1.0
+    machine_number::Int64 = 1
+    Δt::Float64 = 1.0
+    A::Float64 = 3.1
+    f_PV::Float64 = 1 
+    η_PV_ref::Float64 = 20.9 / 100
+    λ::Float64 = -0.34 / 100
+    Tc_ref::Float64 = 25.0
+    tau_alpha::Float64 = 0.9
+    η_inverter::Float64 = 0.98
+    life_year::Float64 = 20.0
+    cost_initial::Float64 = 3800.0
+    cost_OM::Float64 = 190.0
+    cost_replace::Float64 = 3800.0
+    staff_number::Int64 = 50
+end</code></pre></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../../Dynamic_simulation/Ai4ESimulator/">« Ai4ESimulator</a><a class="docs-footer-nextpage" href="../风光煤气储发电/">风光煤气储发电 »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 0.27.25 on <span class="colophon-date" title="Tuesday 5 March 2024 10:29">Tuesday 5 March 2024</span>. Using Julia version 1.10.2.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>

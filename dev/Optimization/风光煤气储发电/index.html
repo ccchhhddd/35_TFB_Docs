@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>风光煤气储发电 · 综合能源系统仿真优化平台</title><script data-outdated-warner src="../../assets/warner.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/lato-font/3.0.0/css/lato-font.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/juliamono/0.045/juliamono.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/fontawesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/solid.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/brands.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.13.24/katex.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL="../.."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" data-main="../../assets/documenter.js"></script><script src="../../siteinfo.js"></script><script src="../../../versions.js"></script><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/documenter-dark.css" data-theme-name="documenter-dark" data-theme-primary-dark/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/documenter-light.css" data-theme-name="documenter-light" data-theme-primary/><script src="../../assets/themeswap.js"></script><link href="../../assets/css/notes.css" rel="stylesheet" type="text/css"/></head><body><div id="documenter"><nav class="docs-sidebar"><a class="docs-logo" href="../../"><img src="../../assets/logo.svg" alt="综合能源系统仿真优化平台 logo"/></a><div class="docs-package-name"><span class="docs-autofit"><a href="../../">综合能源系统仿真优化平台</a></span></div><form class="docs-search" action="../../search/"><input class="docs-search-query" id="documenter-search-query" name="q" type="text" placeholder="Search docs"/></form><ul class="docs-menu"><li><a class="tocitem" href="../../">主页</a></li><li><span class="tocitem">静态仿真</span><ul><li><a class="tocitem" href="../../Static_simulation/PID控制仿真实验/">PID控制仿真实验</a></li><li><a class="tocitem" href="../../Static_simulation/文丘里管压力仿真/">文丘里管压力仿真</a></li><li><a class="tocitem" href="../../Static_simulation/蒸汽动力循环仿真/">蒸汽动力循环仿真</a></li><li><a class="tocitem" href="../../Static_simulation/顺流与逆流式换热器仿真/">顺流与逆流式换热器仿真</a></li></ul></li><li><span class="tocitem">动态仿真</span><ul><li><a class="tocitem" href="../../Dynamic_simulation/Ai4EJumulink/">Ai4EJumulink</a></li><li><a class="tocitem" href="../../Dynamic_simulation/Ai4ESimulator/">Ai4ESimulator</a></li></ul></li><li><span class="tocitem">优化</span><ul><li><a class="tocitem" href="../风光制氢/">风光制氢</a></li><li class="is-active"><a class="tocitem" href>风光煤气储发电</a><ul class="internal"><li><a class="tocitem" href="#简介"><span>简介</span></a></li><li><a class="tocitem" href="#操作演示"><span>操作演示</span></a></li><li><a class="tocitem" href="#操作运行方法及效果"><span>操作运行方法及效果</span></a></li><li><a class="tocitem" href="#部分代码"><span>部分代码</span></a></li></ul></li></ul></li></ul><div class="docs-version-selector field has-addons"><div class="control"><span class="docs-label button is-static is-size-7">Version</span></div><div class="docs-selector control is-expanded"><div class="select is-fullwidth is-size-7"><select id="documenter-version-selector"></select></div></div></div></nav><div class="docs-main"><header class="docs-navbar"><nav class="breadcrumb"><ul class="is-hidden-mobile"><li><a class="is-disabled">优化</a></li><li class="is-active"><a href>风光煤气储发电</a></li></ul><ul class="is-hidden-tablet"><li class="is-active"><a href>风光煤气储发电</a></li></ul></nav><div class="docs-right"><a class="docs-edit-link" href="https://github.com/ccchhhddd/35_TFB_Docs/blob/main/docs/src/Optimization/风光煤气储发电.md" title="Edit on GitHub"><span class="docs-icon fab"></span><span class="docs-label is-hidden-touch">Edit on GitHub</span></a><a class="docs-settings-button fas fa-cog" id="documenter-settings-button" href="#" title="Settings"></a><a class="docs-sidebar-button fa fa-bars is-hidden-desktop" id="documenter-sidebar-button" href="#"></a></div></header><article class="content" id="documenter-page"><h1 id="风光煤气储发电"><a class="docs-heading-anchor" href="#风光煤气储发电">风光煤气储发电</a><a id="风光煤气储发电-1"></a><a class="docs-heading-anchor-permalink" href="#风光煤气储发电" title="Permalink"></a></h1><h2 id="简介"><a class="docs-heading-anchor" href="#简介">简介</a><a id="简介-1"></a><a class="docs-heading-anchor-permalink" href="#简介" title="Permalink"></a></h2><p>该功能针对风光气煤储外送通道场景，考虑风光气煤储典型场景的技术经济性，论证气电和煤电两种典型化石能源支撑新能源大基地的技术经济特征，重点研究两者调峰灵活性与经济性。模型中主要包含三大模块：</p><p>（1）基于给定场景的系统组件拓扑结构，输入相应的算例参数，实现对应场景8760小时仿真计算的仿真模块；</p><p>（2）采用元启发式优化方法获得相应场景下最佳容量配置的优化模块；</p><p>（3）计算对应场景在行业基准参数下的经济性评价模块；</p><h2 id="操作演示"><a class="docs-heading-anchor" href="#操作演示">操作演示</a><a id="操作演示-1"></a><a class="docs-heading-anchor-permalink" href="#操作演示" title="Permalink"></a></h2><p><img src="../../assets/优化/优化__风光煤气储能发电/风光煤气储发电动图.gif" alt/></p><h2 id="操作运行方法及效果"><a class="docs-heading-anchor" href="#操作运行方法及效果">操作运行方法及效果</a><a id="操作运行方法及效果-1"></a><a class="docs-heading-anchor-permalink" href="#操作运行方法及效果" title="Permalink"></a></h2><h3 id=".模式选择"><a class="docs-heading-anchor" href="#.模式选择">1.模式选择</a><a id=".模式选择-1"></a><a class="docs-heading-anchor-permalink" href="#.模式选择" title="Permalink"></a></h3><p>如下图所示，导航栏中选择风光制氢或者风光煤气储模式。</p><p><img src="../../assets/优化/优化__风光煤气储能发电/1.png" alt/></p><h3 id=".系统图展示"><a class="docs-heading-anchor" href="#.系统图展示">2.系统图展示</a><a id=".系统图展示-1"></a><a class="docs-heading-anchor-permalink" href="#.系统图展示" title="Permalink"></a></h3><p>展示对应场景下系统图</p><p><img src="../../assets/优化/优化__风光煤气储能发电/2.png" alt/></p><h3 id=".外送通道负荷"><a class="docs-heading-anchor" href="#.外送通道负荷">3.外送通道负荷</a><a id=".外送通道负荷-1"></a><a class="docs-heading-anchor-permalink" href="#.外送通道负荷" title="Permalink"></a></h3><p>外送通道负荷界面如图所示。外送通道负荷可实现数据的修改、导入和导出。</p><p><img src="../../assets/优化/优化__风光煤气储能发电/3.png" alt/></p><h3 id=".参数输入与计算"><a class="docs-heading-anchor" href="#.参数输入与计算">4.参数输入与计算</a><a id=".参数输入与计算-1"></a><a class="docs-heading-anchor-permalink" href="#.参数输入与计算" title="Permalink"></a></h3><p>参数输入包含仿真计算参数输入与优化计算参数输入，如图3-25所示。仿真计算参数输入包含每种组件参数输入，滑动点击相应项即可切换对应组件（风电、光电、抽水蓄能、压缩空气储能、电化学储能、气电、煤电、经济性参数）的参数输入菜单。每种组件含有默认值，若不输入则直接采用默认值优化计算参数输入在仿真计算参数输入基础之上额外包含选择待优化容量参数下拉选择框。通过该选择框可选择需要优化的变量。优化计算参数输入与仿真计算参数输入中的组件参数修改界面相互关联，在任意一个界面中修改都可行。参数输入完成后点击按钮点击进行仿真/优化计算即可完成计算。</p><p><img src="../../assets/优化/优化__风光煤气储能发电/4.png" alt/></p><h3 id=".环境数据输出图"><a class="docs-heading-anchor" href="#.环境数据输出图">5.环境数据输出图</a><a id=".环境数据输出图-1"></a><a class="docs-heading-anchor-permalink" href="#.环境数据输出图" title="Permalink"></a></h3><p>如图所示，展示了与堆叠图对应时间的环境数据图，可直观看出辐照强度与风速的大小。该图采用双Y轴图，左轴表示辐照强度，右轴表示风速。</p><p><img src="../../assets/优化/优化__风光煤气储能发电/5.png" alt/></p><h3 id=".小时运行图"><a class="docs-heading-anchor" href="#.小时运行图">6.小时运行图</a><a id=".小时运行图-1"></a><a class="docs-heading-anchor-permalink" href="#.小时运行图" title="Permalink"></a></h3><p>如图所示，小时运行图包含周运行图与日运行图，可点击按钮进行切换。图例中包含各类电源的功率、网汇电量与弃电功率；8760小时分割为365天，一张图展示24小时数据，通过滑动条拖动切换日期；点击图例可选择是否显示该数据；右侧工具箱可实现图片下载、放大、缩小、切换为柱状图、切换为普通图、数据转化等；鼠标悬浮在数据点即可显示相关数据。</p><p><img src="../../assets/优化/优化__风光煤气储能发电/6.png" alt/></p><h3 id=".规模与经济性表"><a class="docs-heading-anchor" href="#.规模与经济性表">7.规模与经济性表</a><a id=".规模与经济性表-1"></a><a class="docs-heading-anchor-permalink" href="#.规模与经济性表" title="Permalink"></a></h3><p>如图所示，表为横向表，可保留历史计算功能。每进行一次计算，规模与经济性数据向下新增。绘图历史数据不保留，绿色导出按钮可显示数据总量，点击导出Excel表格；每页最多保留10条记录，右下方可进行翻页。</p><p><img src="../../assets/优化/优化__风光煤气储能发电/7.png" alt/></p><h2 id="部分代码"><a class="docs-heading-anchor" href="#部分代码">部分代码</a><a id="部分代码-1"></a><a class="docs-heading-anchor-permalink" href="#部分代码" title="Permalink"></a></h2><pre><code class="language-julia hljs">function simulate_ies_ele!(machines::Tuple, fin::Financial, ::Val{1})
+    pv, wt, ec, hc, _ = machines
+    pv_power, wt_power, load_power = map(outputEnergy, (pv, wt, ec))
+    # println(load_power)
+    hc.load = outputH2Mass(load_power, ec, 1.0)
+    hc_power = outputEnergy(hc)
+    powers = (pv_power, wt_power, load_power, hc_power)
+    # 供给-需求=ΔE
+    ΔE = wt_power + pv_power - load_power - hc_power
+    # 余电上网，网汇购电
+    ΔE_to_grid, ΔE_from_grid = pn_split(ΔE)
+    machines = (pv, wt, ec, hc)
+    fd = figureDictData(wt_power, pv_power, load_power, hc_power,
+        ΔE_to_grid, ΔE_from_grid, Val(1))
+    ecd = economicAnalysisData(machines, fin, powers,
+        (sum(ΔE_to_grid), sum(ΔE_from_grid), 0), Val(1))
+    return fd, ecd
+end
+
+&quot;&quot;&quot;
+风力发电机
+
+组件参数:
+- `input_v`: 环境风速输入
+- `capacity`: 总装机容量， kW
+- `unit_capacity`: 单机容量， kW
+- `machine_number`: 机组数量
+- `Δt`: 采样时间， h
+- `η_t`: 风轮传动效率
+- `η_g`: 发电机效率
+- `h1`: 风速切入速度， m/s
+- `h2`: 风速切出速度， m/s
+- `α`: 风速指数
+- `η_inverter`: 综合效率，如考虑逆变器、电机效率等
+- `life_year`: 使用年限，年
+- `cost_initial`: 初始成本，元/kW
+- `cost_OM`: 年运维成本，元/kW
+- `cost_replace`: 更换成本，元/kW
+- `k `: 风速-功率曲线
+- `staff_number`: 人员数
+
+&quot;&quot;&quot;
+Base.@kwdef mutable struct WindTurbine &lt;: RenewableEnergyMachine
+    input_v::Vector = Float64[]
+    capacity::Float64 = 4e6
+    unit_capacity::Float64 = 1.0
+    machine_number::Int64 = 1
+    Δt::Float64 = 1.0
+    η_t::Float64 = 0.96
+    η_g::Float64 = 0.93
+    h1::Float64 = 10.0
+    h2::Float64 = 135.0
+    α::Float64 = 1.0 / 7.0
+    η_inverter::Float64 = 1.0
+    life_year::Float64 = 20.0
+    cost_initial::Float64 = 4800.0
+    cost_OM::Float64 = 720.0
+    cost_replace::Float64 = 4800.0
+    k::Function = k
+    staff_number::Int64 = 50
+end
+
+k(v2) = ifelse(v2 &lt; 3.0, 0.0,
+    ifelse(3.0 &lt;= v2 &lt; 9.5, (-30.639 * v2^3 + 623.5 * v2^2 - 3130.4 * v2 + 4928) / 5000,
+        ifelse(9.5 &lt;= v2 &lt; 19.5, 1.0,
+            ifelse(19.5 &lt;= v2 &lt;= 25.0, (-203.97 * v2 + 9050.9) / 5000, 0.0))))</code></pre></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../风光制氢/">« 风光制氢</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 0.27.25 on <span class="colophon-date" title="Tuesday 5 March 2024 10:29">Tuesday 5 March 2024</span>. Using Julia version 1.10.2.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>Ai4ESimulator · 综合能源系统仿真优化平台</title><script data-outdated-warner src="../../assets/warner.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/lato-font/3.0.0/css/lato-font.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/juliamono/0.045/juliamono.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/fontawesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/solid.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/brands.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.13.24/katex.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL="../.."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" data-main="../../assets/documenter.js"></script><script src="../../siteinfo.js"></script><script src="../../../versions.js"></script><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/documenter-dark.css" data-theme-name="documenter-dark" data-theme-primary-dark/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../assets/themes/documenter-light.css" data-theme-name="documenter-light" data-theme-primary/><script src="../../assets/themeswap.js"></script><link href="../../assets/css/notes.css" rel="stylesheet" type="text/css"/></head><body><div id="documenter"><nav class="docs-sidebar"><a class="docs-logo" href="../../"><img src="../../assets/logo.svg" alt="综合能源系统仿真优化平台 logo"/></a><div class="docs-package-name"><span class="docs-autofit"><a href="../../">综合能源系统仿真优化平台</a></span></div><form class="docs-search" action="../../search/"><input class="docs-search-query" id="documenter-search-query" name="q" type="text" placeholder="Search docs"/></form><ul class="docs-menu"><li><a class="tocitem" href="../../">主页</a></li><li><span class="tocitem">静态仿真</span><ul><li><a class="tocitem" href="../../Static_simulation/PID控制仿真实验/">PID控制仿真实验</a></li><li><a class="tocitem" href="../../Static_simulation/文丘里管压力仿真/">文丘里管压力仿真</a></li><li><a class="tocitem" href="../../Static_simulation/蒸汽动力循环仿真/">蒸汽动力循环仿真</a></li><li><a class="tocitem" href="../../Static_simulation/顺流与逆流式换热器仿真/">顺流与逆流式换热器仿真</a></li></ul></li><li><span class="tocitem">动态仿真</span><ul><li><a class="tocitem" href="../Ai4EJumulink/">Ai4EJumulink</a></li><li class="is-active"><a class="tocitem" href>Ai4ESimulator</a><ul class="internal"><li><a class="tocitem" href="#简介"><span>简介</span></a></li><li><a class="tocitem" href="#案例"><span>案例</span></a></li></ul></li></ul></li><li><span class="tocitem">优化</span><ul><li><a class="tocitem" href="../../Optimization/风光制氢/">风光制氢</a></li><li><a class="tocitem" href="../../Optimization/风光煤气储发电/">风光煤气储发电</a></li></ul></li></ul><div class="docs-version-selector field has-addons"><div class="control"><span class="docs-label button is-static is-size-7">Version</span></div><div class="docs-selector control is-expanded"><div class="select is-fullwidth is-size-7"><select id="documenter-version-selector"></select></div></div></div></nav><div class="docs-main"><header class="docs-navbar"><nav class="breadcrumb"><ul class="is-hidden-mobile"><li><a class="is-disabled">动态仿真</a></li><li class="is-active"><a href>Ai4ESimulator</a></li></ul><ul class="is-hidden-tablet"><li class="is-active"><a href>Ai4ESimulator</a></li></ul></nav><div class="docs-right"><a class="docs-edit-link" href="https://github.com/ccchhhddd/35_TFB_Docs/blob/main/docs/src/Dynamic_simulation/Ai4ESimulator.md" title="Edit on GitHub"><span class="docs-icon fab"></span><span class="docs-label is-hidden-touch">Edit on GitHub</span></a><a class="docs-settings-button fas fa-cog" id="documenter-settings-button" href="#" title="Settings"></a><a class="docs-sidebar-button fa fa-bars is-hidden-desktop" id="documenter-sidebar-button" href="#"></a></div></header><article class="content" id="documenter-page"><h1 id="Ai4ESimulator"><a class="docs-heading-anchor" href="#Ai4ESimulator">Ai4ESimulator</a><a id="Ai4ESimulator-1"></a><a class="docs-heading-anchor-permalink" href="#Ai4ESimulator" title="Permalink"></a></h1><h2 id="简介"><a class="docs-heading-anchor" href="#简介">简介</a><a id="简介-1"></a><a class="docs-heading-anchor-permalink" href="#简介" title="Permalink"></a></h2><p>高可拓展的云架构流程系统仿真平台Ai4ESimulator基于新一代开源科学计算编程语言Julia与Vue3前端框架，适用于复杂流程系统的云仿真平台。云仿真平台采用前后端分离技术:前端为Web界面;后端为集解析器、组件库、求解器三大模块为一体的仿引擎，各模块间通过接口协同工作。仿真平台具备高度可拓展性，后端参析器可嵌入参数辨识问题、优化问题、控制问题等多种问题的代码生成工具;组件库广泛适用于能源、化工、机器、电气等多个领域的流程系统模型。</p><h2 id="案例"><a class="docs-heading-anchor" href="#案例">案例</a><a id="案例-1"></a><a class="docs-heading-anchor-permalink" href="#案例" title="Permalink"></a></h2><h3 id=".电解槽"><a class="docs-heading-anchor" href="#.电解槽">1.电解槽</a><a id=".电解槽-1"></a><a class="docs-heading-anchor-permalink" href="#.电解槽" title="Permalink"></a></h3><p>使用光伏电池驱动电解槽是一种利用太阳能直接驱动电解过程的技术。通过将光伏电池与电解槽相连接，可以将太阳能光能转化为电能，并利用该电能进行电解反应。</p><h4 id="操作演示"><a class="docs-heading-anchor" href="#操作演示">操作演示</a><a id="操作演示-1"></a><a class="docs-heading-anchor-permalink" href="#操作演示" title="Permalink"></a></h4><p><img src="../../assets/动态仿真/Ai4ESimulator/电解槽.gif" alt/></p><h4 id="部分代码"><a class="docs-heading-anchor" href="#部分代码">部分代码</a><a id="部分代码-1"></a><a class="docs-heading-anchor-permalink" href="#部分代码" title="Permalink"></a></h4><pre><code class="language-julia hljs">using ModelingToolkit, DifferentialEquations
+using Ai4EComponentLib
+using Ai4EComponentLib.Electrochemistry
+
+@named Pv = PhotovoltaicCell()
+@named El = PEMElectrolyzer()
+@named ground = Ground()
+eqs = [
+    connect(Pv.p, El.p)
+    connect(Pv.n, El.n, ground.g)
+]
+@named OdeFun = ODESystem(eqs, t)
+@named model = compose(OdeFun, [Pv, El, ground])
+sys = structural_simplify(model)
+u0 = [
+    El.m_H_2 =&gt; 0.0
+    El.∂_m_H_2 =&gt; 0.0
+]
+prob = ODEProblem(sys, u0, (0.0, 30.0))
+sol = solve(prob)</code></pre><h3 id=".锂电池"><a class="docs-heading-anchor" href="#.锂电池">2.锂电池</a><a id=".锂电池-1"></a><a class="docs-heading-anchor-permalink" href="#.锂电池" title="Permalink"></a></h3><p>为了将光伏电池生成的直流电能存储起来，需要使用储能系统，而锂电池是一种常用的选择。光伏电池阵列中的直流电能经过电流调节和逆变等电子设备的处理后，可输入到锂电池系统中进行充电。锂电池的特点是能量密度高、寿命长、充放电效率高等，因此被广泛应用于储能领域。当太阳能充足时，光伏电池会将多余的能量存储到锂电池中，以备晚上或阴天时使用。这种方式实现了可再生能源的利用和能源的平衡，有助于减少对传统能源的依赖，降低碳排放并提高能源的可持续性。</p><h4 id="操作实例"><a class="docs-heading-anchor" href="#操作实例">操作实例</a><a id="操作实例-1"></a><a class="docs-heading-anchor-permalink" href="#操作实例" title="Permalink"></a></h4><p><img src="../../assets/动态仿真/Ai4ESimulator/锂电池.gif" alt/></p><h4 id="部分代码-2"><a class="docs-heading-anchor" href="#部分代码-2">部分代码</a><a class="docs-heading-anchor-permalink" href="#部分代码-2" title="Permalink"></a></h4><pre><code class="language-julia hljs">using ModelingToolkit, DifferentialEquations
+using Ai4EComponentLib
+using Ai4EComponentLib.Electrochemistry
+using Plots
+
+@named batter = Lithium_ion_batteries()
+@named Pv = PhotovoltaicCell()
+@named ground = Ground()
+
+eqs = [
+    connect(batter.p, Pv.p)
+    connect(batter.n, Pv.n, ground.g)
+]
+
+@named OdeFun = ODESystem(eqs, t)
+@named model = compose(OdeFun, [Pv, batter, ground])
+sys = structural_simplify(model)
+u0 = [
+    batter.v_f =&gt; 0.5
+    batter.v_s =&gt; 0.5
+    batter.v_soc =&gt; 0.5
+]
+prob = ODEProblem(sys, u0, (0.0, 3600.0))
+sol = solve(prob)</code></pre><h3 id=".空气管道系统"><a class="docs-heading-anchor" href="#.空气管道系统">3.空气管道系统</a><a id=".空气管道系统-1"></a><a class="docs-heading-anchor-permalink" href="#.空气管道系统" title="Permalink"></a></h3><h4 id="系统模式图"><a class="docs-heading-anchor" href="#系统模式图">系统模式图</a><a id="系统模式图-1"></a><a class="docs-heading-anchor-permalink" href="#系统模式图" title="Permalink"></a></h4><p><img src="../../assets/动态仿真/Ai4ESimulator/CompressedAirSystem-1-1.jpg" alt/></p><h4 id="操作实例："><a class="docs-heading-anchor" href="#操作实例：">操作实例：</a><a id="操作实例：-1"></a><a class="docs-heading-anchor-permalink" href="#操作实例：" title="Permalink"></a></h4><p><img src="../../assets/动态仿真/Ai4ESimulator/空气管道.gif" alt/></p><h4 id="部分代码-3"><a class="docs-heading-anchor" href="#部分代码-3">部分代码</a><a class="docs-heading-anchor-permalink" href="#部分代码-3" title="Permalink"></a></h4><pre><code class="language-julia hljs"># Define components
+using Ai4EComponentLib
+using Ai4EComponentLib.AirPipeSim
+using ModelingToolkit, DifferentialEquations
+
+@named inlet = PressureSource(p=6e5, T=300)
+@named pipe1 = AirSimplePipe(R=100, T=300)
+@named pipe2 = TransitionPipe(n=20, f=0.016, D=0.2, L=100, T=300, pins=5.6e5, pouts=4e5)
+@named airTank = AirStorageTank(V=20, T=300, p0=4e5)
+@named pipe3 = TransitionPipe(n=20, f=0.016, D=0.2, L=100, T=300, pins=4e5, pouts=2e5)
+@named outlet = FlowSource(qm=-3.0, T=300)
+
+# Connect components
+eqs=[
+    connect(inlet.port,pipe1.inlet)
+    connect(pipe1.outlet,pipe2.inlet)
+    connect(pipe2.outlet,airTank.inlet)
+    connect(airTank.outlet,pipe3.inlet)
+    connect(pipe3.outlet,outlet.port)
+]
+
+@named connects=ODESystem(eqs,t)
+@named model=compose(connects,inlet,pipe1,pipe2,pipe3,airTank,outlet)
+
+# Simplify the system and solve
+sys=structural_simplify(model)
+
+prob=ODAEProblem(sys,[],(0.0,5.0))
+
+sol=solve(prob,Rosenbrock23())</code></pre><h3 id=".水利管网系统"><a class="docs-heading-anchor" href="#.水利管网系统">4.水利管网系统</a><a id=".水利管网系统-1"></a><a class="docs-heading-anchor-permalink" href="#.水利管网系统" title="Permalink"></a></h3><h4 id="系统模型图"><a class="docs-heading-anchor" href="#系统模型图">系统模型图</a><a id="系统模型图-1"></a><a class="docs-heading-anchor-permalink" href="#系统模型图" title="Permalink"></a></h4><p><img src="../../assets/动态仿真/Ai4ESimulator/model-1.png" alt/></p><h4 id="操作实例-2"><a class="docs-heading-anchor" href="#操作实例-2">操作实例</a><a class="docs-heading-anchor-permalink" href="#操作实例-2" title="Permalink"></a></h4><p><img src="../../assets/动态仿真/Ai4ESimulator/水力管网.gif" alt/></p><h4 id="部分代码-4"><a class="docs-heading-anchor" href="#部分代码-4">部分代码</a><a class="docs-heading-anchor-permalink" href="#部分代码-4" title="Permalink"></a></h4><pre><code class="language-julia hljs">@info &quot;Running IncompressiblePipe...&quot;
+using Ai4EComponentLib
+using Ai4EComponentLib.IncompressiblePipe
+using OrdinaryDiffEq, ModelingToolkit
+using Test
+
+@info &quot;Constructing components...&quot;
+@named high = Source_P(D=0.15, z=25.0, ρ=1.0E3, p=101325, K_inlet=0.5)
+@named low = Sink_P(p=101325)
+@named elbow1 = ElbowPipe(K=0.9, D=0.15, ρ=1.0E3, zin=0.0, zout=0.0)
+@named elbow2 = ElbowPipe(K=0.9, D=0.15, ρ=1.0E3, zin=15.0, zout=15.0)
+@named pipe1 = SimplePipe(L=30.0, D=0.15, f=0.023, zin=25.0, zout=0.0, K_inside=0.0)
+@named pipe2 = SimplePipe(L=15.0, D=0.15, f=0.023, zin=0.0, zout=15.0, K_inside=0.0)
+@named pipe3 = SimplePipe(L=60.0, D=0.15, f=0.023, zin=15.0, zout=15.0, K_inside=10.8)
+
+@info &quot;Constructing system...&quot;
+eqs = [
+    connect(high.port, pipe1.in)
+    connect(pipe1.out, elbow1.in)
+    connect(elbow1.out, pipe2.in)
+    connect(pipe2.out, elbow2.in)
+    connect(elbow2.out, pipe3.in)
+    connect(pipe3.out, low.port)
+]
+
+@named model = compose(ODESystem(eqs, t, name=:funs), [high, low, pipe1, pipe2, pipe3, elbow1, elbow2])
+
+@info &quot;Simplifying system...&quot;
+sys = structural_simplify(model)
+
+@info &quot;Solving system...&quot;
+prob = ODEProblem(sys, [], (0, 0))
+sol = solve(prob, Rosenbrock23())
+
+@test isapprox(sol[pipe1.in.q][1], 0.045, atol=0.0005)</code></pre><h3 id=".热力循环系统"><a class="docs-heading-anchor" href="#.热力循环系统">5.热力循环系统</a><a id=".热力循环系统-1"></a><a class="docs-heading-anchor-permalink" href="#.热力循环系统" title="Permalink"></a></h3><p>整个朗肯循环由热能输入、膨胀、冷凝和压缩等过程组成。通过这些过程，热能源被转化为机械能输出。朗肯循环具有稳定的动力输出和较高的能量效率，其中一部分能量通过冷凝器中的热回收得以回收利用，从而提高了系统的能量效率。</p><h4 id="系统模式图-2"><a class="docs-heading-anchor" href="#系统模式图-2">系统模式图</a><a class="docs-heading-anchor-permalink" href="#系统模式图-2" title="Permalink"></a></h4><p><img src="../../assets/动态仿真/Ai4ESimulator/ThermodynamicCycle-13-56-35.png" alt/></p><h4 id="操作实例-3"><a class="docs-heading-anchor" href="#操作实例-3">操作实例</a><a class="docs-heading-anchor-permalink" href="#操作实例-3" title="Permalink"></a></h4><p><img src="../../assets/动态仿真/Ai4ESimulator/热力系统.gif" alt/></p><h4 id="部分代码-5"><a class="docs-heading-anchor" href="#部分代码-5">部分代码</a><a class="docs-heading-anchor-permalink" href="#部分代码-5" title="Permalink"></a></h4><pre><code class="language-julia hljs">@info &quot;Running ThermodynamicCycle...&quot;
+using Ai4EComponentLib
+using Ai4EComponentLib.ThermodynamicCycle
+using OrdinaryDiffEq, ModelingToolkit
+using Test
+
+@info &quot;Constructing components...&quot;
+@named pump = IsentropicProcess(inter_state=&quot;P&quot;)
+@named pump_P = ThermalStates(state=&quot;P&quot;, value=3.0E6)
+
+@named boiler = IsobaricProcess(inter_state=&quot;T&quot;)
+@named boiler_T = ThermalStates(state=&quot;T&quot;, value=723.15)
+
+@named turbine = IsentropicProcess(inter_state=&quot;P&quot;)
+@named turbine_P = ThermalStates(state=&quot;P&quot;, value=4.0E3)
+
+@named condenser = IsothermalProcess(inter_state=&quot;Q_0&quot;)
+
+@info &quot;Constructing system...&quot;
+eqs = [
+    connect(pump.out, boiler.in)
+    connect(boiler.in, pump_P.node)
+    connect(boiler.out, turbine.in)
+    connect(turbine.in, boiler_T.node)
+    connect(turbine.out, condenser.in)
+    connect(condenser.in, turbine_P.node)
+    connect(condenser.out, pump.in)
+]
+
+@named model = ODESystem(eqs, t, systems=[pump, boiler, turbine, condenser, pump_P, boiler_T, turbine_P])
+
+@info &quot;Simplifying system...&quot;
+sys = structural_simplify(model)
+
+@info &quot;Solving system...&quot;
+prob = ODEProblem(sys, [], (0, 0))
+sol = solve(prob, Rosenbrock23())
+
+q1 = sol[boiler.Δh][1]
+w = -sol[turbine.Δh][1] - sol[pump.Δh][1]
+
+@test isapprox(w / q1, 0.4, atol=0.05)</code></pre></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../Ai4EJumulink/">« Ai4EJumulink</a><a class="docs-footer-nextpage" href="../../Optimization/风光制氢/">风光制氢 »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 0.27.25 on <span class="colophon-date" title="Tuesday 5 March 2024 10:29">Tuesday 5 March 2024</span>. Using Julia version 1.10.2.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>

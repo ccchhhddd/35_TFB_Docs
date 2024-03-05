@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>- · 综合能源系统仿真优化平台</title><script data-outdated-warner src="../../warner.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/lato-font/3.0.0/css/lato-font.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/juliamono/0.045/juliamono.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/fontawesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/solid.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/brands.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.13.24/katex.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL="../../.."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" data-main="../../documenter.js"></script><script src="../../../siteinfo.js"></script><script src="../../../../versions.js"></script><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../themes/documenter-dark.css" data-theme-name="documenter-dark" data-theme-primary-dark/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../themes/documenter-light.css" data-theme-name="documenter-light" data-theme-primary/><script src="../../themeswap.js"></script><link href="../../css/notes.css" rel="stylesheet" type="text/css"/></head><body><div id="documenter"><nav class="docs-sidebar"><a class="docs-logo" href="../../../"><img src="../../logo.svg" alt="综合能源系统仿真优化平台 logo"/></a><div class="docs-package-name"><span class="docs-autofit"><a href="../../../">综合能源系统仿真优化平台</a></span></div><form class="docs-search" action="../../../search/"><input class="docs-search-query" id="documenter-search-query" name="q" type="text" placeholder="Search docs"/></form><ul class="docs-menu"><li><a class="tocitem" href="../../../">主页</a></li><li><span class="tocitem">静态仿真</span><ul><li><a class="tocitem" href="../../../Static_simulation/PID控制仿真实验/">PID控制仿真实验</a></li><li><a class="tocitem" href="../../../Static_simulation/文丘里管压力仿真/">文丘里管压力仿真</a></li><li><a class="tocitem" href="../../../Static_simulation/蒸汽动力循环仿真/">蒸汽动力循环仿真</a></li><li><a class="tocitem" href="../../../Static_simulation/顺流与逆流式换热器仿真/">顺流与逆流式换热器仿真</a></li></ul></li><li><span class="tocitem">动态仿真</span><ul><li><a class="tocitem" href="../../../Dynamic_simulation/Ai4EJumulink/">Ai4EJumulink</a></li><li><a class="tocitem" href="../../../Dynamic_simulation/Ai4ESimulator/">Ai4ESimulator</a></li></ul></li><li><span class="tocitem">优化</span><ul><li><a class="tocitem" href="../../../Optimization/风光制氢/">风光制氢</a></li><li><a class="tocitem" href="../../../Optimization/风光煤气储发电/">风光煤气储发电</a></li></ul></li></ul><div class="docs-version-selector field has-addons"><div class="control"><span class="docs-label button is-static is-size-7">Version</span></div><div class="docs-selector control is-expanded"><div class="select is-fullwidth is-size-7"><select id="documenter-version-selector"></select></div></div></div></nav><div class="docs-main"><header class="docs-navbar"><nav class="breadcrumb"><ul class="is-hidden-mobile"><li class="is-active"><a href>-</a></li></ul><ul class="is-hidden-tablet"><li class="is-active"><a href>-</a></li></ul></nav><div class="docs-right"><a class="docs-edit-link" href="https://github.com/ccchhhddd/35_TFB_Docs/blob/main/docs/src/assets/优化/优化板块部分代码.md" title="Edit on GitHub"><span class="docs-icon fab"></span><span class="docs-label is-hidden-touch">Edit on GitHub</span></a><a class="docs-settings-button fas fa-cog" id="documenter-settings-button" href="#" title="Settings"></a><a class="docs-sidebar-button fa fa-bars is-hidden-desktop" id="documenter-sidebar-button" href="#"></a></div></header><article class="content" id="documenter-page"><pre><code class="language-julia hljs">function optimize_ies_ele!(machines::Tuple, isOpt::Vector, fin::Financial, ::Val{1})
+    pv, wt, ec, hc, _ = machines
+    isOpt = isOpt[1:4]
+    obj = function (x)
+        # 顺序为光伏、风机、电解槽、储氢，顺序不能错！！！
+        machines = matchOptVars((pv, wt, ec, hc), isOpt, x)
+        wt_power, pv_power, load_power, hc_power = map(outputEnergy, machines)
+        powers = (wt_power, pv_power, load_power, hc_power)
+        # 供给-需求=ΔE
+        ΔE = wt_power + pv_power - load_power - hc_power
+        # 余电上网，网汇购电
+        ΔE_to_grid, ΔE_from_grid = pn_split(ΔE)
+        # 返回 &quot;制氢价格（元/kg）&quot;，该数值即为待优化的目标值
+        dictData = economicAnalysisData(machines, fin, powers,
+            (sum(ΔE_to_grid), sum(ΔE_from_grid), 0), Val(1))
+        objective = -abs(1 / dictData[&quot;静态总投资回收年限（年）&quot;])
+        return objective
+    end
+    # 调用优化求解器，可查BlackBoxOptim.jl文档
+    res = bboptimize(obj; SearchRange=(1e1, 1e7),
+        NumDimensions=sum(isOpt), TraceMode=:verbose)
+    # 输出优化结果
+    candidate, fitness = best_candidate(res), best_fitness(res)
+    println(&quot;优化变量结果： $candidate&quot;, &quot;目标值： $fitness&quot;)
+    machines = matchOptVars((pv, wt, ec, hc), isOpt, candidate)
+    # 返回最优解的仿真结果
+    return simulate_ies_ele!((machines..., 0), fin, Val(1))
+end</code></pre><pre><code class="language-julia hljs">function simulate_ies_ele!(machines::Tuple, fin::Financial, ::Val{1})
+    pv, wt, ec, hc, _ = machines
+    pv_power, wt_power, load_power = map(outputEnergy, (pv, wt, ec))
+    # println(load_power)
+    hc.load = outputH2Mass(load_power, ec, 1.0)
+    hc_power = outputEnergy(hc)
+    powers = (pv_power, wt_power, load_power, hc_power)
+    # 供给-需求=ΔE
+    ΔE = wt_power + pv_power - load_power - hc_power
+    # 余电上网，网汇购电
+    ΔE_to_grid, ΔE_from_grid = pn_split(ΔE)
+    machines = (pv, wt, ec, hc)
+    fd = figureDictData(wt_power, pv_power, load_power, hc_power,
+        ΔE_to_grid, ΔE_from_grid, Val(1))
+    ecd = economicAnalysisData(machines, fin, powers,
+        (sum(ΔE_to_grid), sum(ΔE_from_grid), 0), Val(1))
+    return fd, ecd
+end</code></pre><pre><code class="language-julia hljs">data_weather = CSV.File(joinpath(@__DIR__, &quot;./CNPC/data/weather_lenghu_2018.csv&quot;); select=[&quot;glob_hor_rad&quot;, &quot;DBT&quot;, &quot;wind_speed&quot;])
+const S1_DATA_GI = data_weather.glob_hor_rad
+const S1_DATA_TA = data_weather.DBT
+const S1_DATA_WS = data_weather.wind_speed
+# const S1_DATA_LOAD = 5285.41 * ones(Float64, 8760)
+
+data_weather = CSV.File(joinpath(@__DIR__, &quot;./CNPC/data/weather_lenghu_2018.csv&quot;); select=[&quot;dir_nor_rad&quot;, &quot;DBT&quot;, &quot;wind_speed&quot;])
+
+const S2_DATA_GI = data_weather.dir_nor_rad
+const S2_DATA_TA = data_weather.DBT
+const S2_DATA_WS = data_weather.wind_speed
+
+# 跨域解决方案
+const CORS_HEADERS = [
+  &quot;Access-Control-Allow-Origin&quot; =&gt; &quot;*&quot;,
+  &quot;Access-Control-Allow-Headers&quot; =&gt; &quot;*&quot;,
+  &quot;Access-Control-Allow-Methods&quot; =&gt; &quot;POST, GET, OPTIONS&quot;
+]
+
+function CorsMiddleware(handler)
+  return function (req::HTTP.Request)
+    # println(&quot;CORS middleware&quot;)
+    # determine if this is a pre-flight request from the browser
+    if HTTP.method(req) ∈ [&quot;POST&quot;, &quot;GET&quot;, &quot;OPTIONS&quot;]
+      return HTTP.Response(200, CORS_HEADERS, HTTP.body(handler(req)))
+    else
+      return handler(req) # passes the request to the AuthMiddleware
+    end
+  end
+end
+
+@post &quot;/simulation&quot; function (req)
+  # 将HTTP请求的正文（request body）转换为 Julia 中的字典（Dict）数据结构
+  paras = json(req)
+  # 调用后端模型获得数据
+  #table = simulate!(paras[&quot;inputdata&quot;], Val(paras[&quot;mode&quot;]))
+  #println(paras)
+  figure, table = simulate!(paras[&quot;inputdata&quot;], Val(paras[&quot;mode&quot;]))
+  #println(figure)
+  # 返回数据，匹配前端request要求的格式
+  return Dict(
+    &quot;code&quot; =&gt; 200,
+    &quot;message&quot; =&gt; &quot;success&quot;,
+    &quot;data&quot; =&gt; Dict(
+      # &quot;table&quot; =&gt; getTableData(table),
+      &quot;table&quot; =&gt; OrderedDict(k =&gt; round(v, digits=2) for (k, v) in table),
+      &quot;figure&quot; =&gt; Dict(
+        &quot;xyAxis&quot; =&gt; figure,
+      )
+    ))
+end</code></pre><pre><code class="language-julia hljs">&quot;&quot;&quot;
+风力发电机
+
+组件参数:
+- `input_v`: 环境风速输入
+- `capacity`: 总装机容量， kW
+- `unit_capacity`: 单机容量， kW
+- `machine_number`: 机组数量
+- `Δt`: 采样时间， h
+- `η_t`: 风轮传动效率
+- `η_g`: 发电机效率
+- `h1`: 风速切入速度， m/s
+- `h2`: 风速切出速度， m/s
+- `α`: 风速指数
+- `η_inverter`: 综合效率，如考虑逆变器、电机效率等
+- `life_year`: 使用年限，年
+- `cost_initial`: 初始成本，元/kW
+- `cost_OM`: 年运维成本，元/kW
+- `cost_replace`: 更换成本，元/kW
+- `k `: 风速-功率曲线
+- `staff_number`: 人员数
+
+&quot;&quot;&quot;
+Base.@kwdef mutable struct WindTurbine &lt;: RenewableEnergyMachine
+    input_v::Vector = Float64[]
+    capacity::Float64 = 4e6
+    unit_capacity::Float64 = 1.0
+    machine_number::Int64 = 1
+    Δt::Float64 = 1.0
+    η_t::Float64 = 0.96
+    η_g::Float64 = 0.93
+    h1::Float64 = 10.0
+    h2::Float64 = 135.0
+    α::Float64 = 1.0 / 7.0
+    η_inverter::Float64 = 1.0
+    life_year::Float64 = 20.0
+    cost_initial::Float64 = 4800.0
+    cost_OM::Float64 = 720.0
+    cost_replace::Float64 = 4800.0
+    k::Function = k
+    staff_number::Int64 = 50
+end
+
+k(v2) = ifelse(v2 &lt; 3.0, 0.0,
+    ifelse(3.0 &lt;= v2 &lt; 9.5, (-30.639 * v2^3 + 623.5 * v2^2 - 3130.4 * v2 + 4928) / 5000,
+        ifelse(9.5 &lt;= v2 &lt; 19.5, 1.0,
+            ifelse(19.5 &lt;= v2 &lt;= 25.0, (-203.97 * v2 + 9050.9) / 5000, 0.0))))
+
+&quot;&quot;&quot;
+
+光伏组件
+
+组件参数:
+- `input_GI`: 光照强度输入， Wh/m2
+- `input_Ta`: 环境温度输入， ℃
+- `input_v`: 风速输入， m/s
+- `capacity`: 总装机容量， kW
+- `unit_capacity`: 单机容量， kW
+- `machine_number`: 机组数量
+- `Δt`: 采样时间， h
+- `A`: 光伏板面积， m2
+- `f_PV`: 光伏板填充因子
+- `η_PV_ref`: 光伏板额定转换效率
+- `λ`: 光伏板温度系数
+- `Tc_ref`: 光伏板额定温度， ℃
+- `tau_alpha`: 光伏板吸收率
+- `η_inverter`: 综合效率，如考虑逆变器、电机效率等
+- `life_year`: 使用年限，年
+- `cost_initial`: 初始成本，元/kW
+- `cost_OM`: 年运维成本，元/kW
+- `cost_replace`: 更换成本，元/kW
+- `staff_number`: 人员数
+
+&quot;&quot;&quot;
+Base.@kwdef mutable struct PhotovoltaicCell &lt;: RenewableEnergyMachine
+    input_GI::Vector = Float64[]
+    input_Ta::Vector = Float64[]
+    input_v::Vector = Float64[]
+    capacity::Float64 = 1e7
+    unit_capacity::Float64 = 1.0
+    machine_number::Int64 = 1
+    Δt::Float64 = 1.0
+    A::Float64 = 3.1
+    f_PV::Float64 = 1 
+    η_PV_ref::Float64 = 20.9 / 100
+    λ::Float64 = -0.34 / 100
+    Tc_ref::Float64 = 25.0
+    tau_alpha::Float64 = 0.9
+    η_inverter::Float64 = 0.98
+    life_year::Float64 = 20.0
+    cost_initial::Float64 = 3800.0
+    cost_OM::Float64 = 190.0
+    cost_replace::Float64 = 3800.0
+    staff_number::Int64 = 50
+end</code></pre></article><nav class="docs-footer"><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 0.27.25 on <span class="colophon-date" title="Tuesday 5 March 2024 10:29">Tuesday 5 March 2024</span>. Using Julia version 1.10.2.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
